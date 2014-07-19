@@ -24,11 +24,11 @@
 	    </div>
 	    <div class="form-group">
 	        <button type="submit" class="btn btn-danger btn-block">注 册</button>
-	        <?php echo $submit_error; ?>
 	    </div>
 	</form>	
 	<div class="center-block footer"></div>
 @stop
+
 @section('scripts')
 	<script>
 	    $(function () {

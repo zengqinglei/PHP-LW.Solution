@@ -1,7 +1,7 @@
 ﻿// 全局配置
 var LW = {
     Url: {
-        getValidCode: '/service/getvalidcode'
+        getValidCode: '/index.php/service/getvalidcode'
     },
     ajaxError: function (XMLHttpRequest, callback) {
         switch (XMLHttpRequest.status) {
