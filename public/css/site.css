@@ -1,0 +1,83 @@
+﻿/* account>login */
+.header {
+    margin-top: 30px;
+    width: 320px;
+    height: 50px;
+    background: transparent url(/Images/login.png) no-repeat;
+}
+
+.form-login,
+.form-register {
+    padding: 40px 15px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+    .form-register .txt-validcode {
+        width: 120px;
+    }
+
+    .form-register .img-validcode {
+        margin-left: 5px;
+        width: 60px;
+        height: 34px;
+    }
+
+    .form-register .btn-refresh-validcode {
+        margin-left: 5px;
+    }
+
+.promotions-xrzxlp {
+    margin-top: 10px;
+    width: 300px;
+    border: solid 3px #DD1472;
+    overflow: hidden;
+}
+
+.home-index-container {
+    position: relative;
+    width: 320px;
+}
+
+    .home-index-container .move-bar {
+        position: absolute;
+        width: 40px;
+        height: 260px;
+        background-color:transparent;
+        background-position:center center;
+        background-repeat:no-repeat;
+        display: inline-block;
+    }
+    .home-index-container .bar-left-enable{
+        left:0;
+        background: transparent url(/Content/Images/bar-left-enable.png) no-repeat center center;
+    }
+    .home-index-container .bar-left-disable{
+        left:0;
+        background: transparent url(/Content/Images/bar-left-disable.png) no-repeat center center;
+    }
+    .home-index-container .bar-right-enable{
+        right:0;
+        background: transparent url(/Content/Images/bar-right-enable.png) no-repeat center center;
+    }
+    .home-index-container .bar-right-disable{
+        right:0;
+        background: transparent url(/Content/Images/bar-right-disable.png) no-repeat center center;
+    }
+     .home-index-container .shop-list{
+         margin:0;
+         padding:0;
+         height:300px;
+         overflow:hidden;
+     }
+
+.footer {
+    margin-top: 30px;
+    width: 320px;
+    height: 119px;
+    background: transparent url(/Images/footer.png) no-repeat;
+}
+
+.text-red {
+    color: #dd1471;
+}
