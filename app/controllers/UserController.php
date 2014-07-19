@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
+
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends BaseController {
@@ -16,8 +18,17 @@ class UserController extends BaseController {
 	{
 		return View::make('user.login');
 	}
-	public function postLogin($usermail,$passowrd)
+	public function postLogin($usermail)
 	{
+		return $usermail;
+		$rules = array(
+				'usermail' => 'alpha_num'
+		);
+		if ($validator->passes()) {
+			// Normally we would do something with the data.
+			return Redirect::to('user/register');
+		}
+		return Redirect::to('/')->withErrors($validator);
 		if (Auth::attempt(array('usermail' => $usermail, 'password' => $password)))
 		{
 			return Redirect::to('index.php/home/index');

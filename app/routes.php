@@ -19,7 +19,7 @@ Route::group(array(), function()
 	Route::post('user/register', array('before' => 'csrf', 'UserController@postRegister'));
 	
 	Route::get('user/login', 'UserController@getLogin');
-	Route::post('user/login',  array('before' => 'csrf', 'UserController@postLogin'));
+	Route::post('user/login/{usermail}',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
 });
 
 Route::group(array('before' => 'auth'), function()
