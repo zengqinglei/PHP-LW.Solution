@@ -11,19 +11,34 @@
 |
 */
 
-Route::get('/', function()
+Route::group(array(), function()
 {
-	$results = DB::select('select * from users where userid = ?',array(3));
+	Route::get('service/getvalidcode', 'ServiceController@getValidCode');
 	
-	return $results;
+	Route::get('user/register', 'UserController@getRegister');
+	Route::post('user/register', array('before' => 'csrf', 'UserController@postRegister'));
 	
-	return View::make('home.index');
+	Route::get('user/login', 'UserController@getLogin');
+	Route::post('user/login/{usermail}',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
 });
-Route::get('user/register', 'UserController@getRegister');
-Route::post('user/register', array('before' => 'csrf','UserController@postRegister'));
-Route::get('user/login', 'UserController@getLogin');
-Route::post('user/login', array('before' => 'csrf','UserController@postLogin'));
-Route::get('user/logout', 'UserController@getLogout');
+
+Route::group(array('before' => 'auth'), function()
+{
+    Route::get('user/logout', 'UserController@getLogout');
+    
+    Route::get('/', function()
+    {
+    	$results = DB::select('select * from users where userid = ?',array(3));
+    	
+    	// return var_dump($results[0]->userid);
+    	return View::make('home.index',array('result'=>$results[0]));
+    });
+});
+
+Route::group(array('namespace' => 'Admin'), function()
+{
+	//
+});
 
 /*
 Event::listen('404', function() {
