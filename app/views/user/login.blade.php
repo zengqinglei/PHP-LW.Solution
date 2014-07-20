@@ -2,7 +2,12 @@
 
 @section('content')
 	<div class="center-block header"></div>
-	{{ Form::open(array('class'=>'form-horizontal form-login','url' => 'user/login','method'=>'post')) }}
+	{{ Form::open(array(
+		'class'=>'form-horizontal form-login',
+		'url' => 'user/login',
+		'method'=>'post'
+		)) 
+	}}
 	    <div class="form-group">
 	        <div class="pull-left" style="padding-top:4px;width:50px;font-weight: 500; font-size:18px;">
                 <strong>登 录</strong>

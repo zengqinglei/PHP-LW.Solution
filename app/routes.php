@@ -19,7 +19,9 @@ Route::group(array(), function()
 	Route::post('user/register', array('before' => 'csrf', 'UserController@postRegister'));
 	
 	Route::get('user/login', 'UserController@getLogin');
-	Route::post('user/login/{usermail}',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
+	Route::post('user/login',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
+    
+    Route::get('promotions/p_xrzxlp', 'PromotionsController@getP_XRZXLP');
 });
 
 Route::group(array('before' => 'auth'), function()

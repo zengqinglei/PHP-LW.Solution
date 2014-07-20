@@ -14,20 +14,28 @@ class UserController extends BaseController {
 	}
 	
 	// 客户登录
-	public function getLogin()
+	public function getLogin($validator=null)
 	{
-		return View::make('user.login');
+		return View::make('user.login')->withErrors($validator);
 	}
-	public function postLogin($usermail)
+	public function postLogin()
 	{
-		return $usermail;
+		$data = Input::all();
 		$rules = array(
-				'usermail' => 'alpha_num'
+			'usermail' => 'alpha_num',
+			'password'=>'alpha_num'
 		);
-		if ($validator->passes()) {
-			// Normally we would do something with the data.
-			return Redirect::to('user/register');
+		$validator = Validator::make($data, $rules);
+		return var_dump($validator->messages());
+		// 验证通过 passes 失败 fails
+		if ($validator->fails()) {
+			$user = DB::select('select * from users where usermail = ? and password = ?',array($data['usermail'],md5($data['password'])));
+			if(is_array($user) && count($user)>0){
+				return Redirect::to('/home/index');
+			}
+			return getLogin(array('submit.error'=>'账户或密码不存在！'));
 		}
+		return getLogin($validator);
 		return Redirect::to('/')->withErrors($validator);
 		if (Auth::attempt(array('usermail' => $usermail, 'password' => $password)))
 		{
