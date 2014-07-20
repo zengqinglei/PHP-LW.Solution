@@ -11,6 +11,11 @@
 |
 */
 
+Route::model('user', 'User');
+Route::bind('user', function($value, $route)
+{
+	return User::where('usermail', $value)->first();
+});
 Route::group(array(), function()
 {
 	Route::get('service/getvalidcode', 'ServiceController@getValidCode');
@@ -18,8 +23,10 @@ Route::group(array(), function()
 	Route::get('user/register', 'UserController@getRegister');
 	Route::post('user/register', array('before' => 'csrf', 'UserController@postRegister'));
 	
-	Route::get('user/login', 'UserController@getLogin');
-	Route::post('user/login/{usermail}',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
+	Route::get('user/login/{user}', 'UserController@getLogin');
+	Route::post('user/login',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
+    
+    Route::get('promotions/p_xrzxlp', 'PromotionsController@getP_XRZXLP');
 });
 
 Route::group(array('before' => 'auth'), function()
