@@ -14,6 +14,10 @@ class SpreeController extends BaseController {
 	public function getP_LHB(){
 		return View::make('spree.p_lhb');
 	}
+	public function postP_LHB(){
+		
+	}
+	
 	
 	// 大礼包--活动介绍
 	public function getP_HDJS(){

@@ -28,6 +28,7 @@ Route::group(array(), function()
     
     Route::get('spree/p_xrzxlp', 'SpreeController@getP_XRZXLP');
     Route::get('spree/p_lhb', 'SpreeController@getP_LHB');
+    Route::post('spree/p_lhb', 'SpreeController@postP_LHB');
     Route::get('spree/p_hdjs', 'SpreeController@getP_HDJS');
 });
 
