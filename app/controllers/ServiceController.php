@@ -3,7 +3,7 @@
 class ServiceController extends BaseController {
 	public function getValidCode()
 	{
-		session_start();
+		//session_start();
 	    //生成验证码图片
 	    Header("Content-type: image/PNG");
 	    $im = imagecreate(44,18); // 画一张指定宽高的图片
@@ -18,8 +18,9 @@ class ServiceController extends BaseController {
 	    $vcodes.=$authnum;
 	    imagestring($im, 5, 2+$i*10, 1, $authnum, $font);
 	    }
-	    $_SESSION['VCODE'] = $vcodes;
-	
+	    //$_SESSION['VCODE'] = $vcodes;
+		Session::put('VCODE',$vcodes);
+		
 	    for($i=0;$i<100;$i++) //加入干扰象素
 	    {
 	    $randcolor = ImageColorallocate($im,rand(0,255),rand(0,255),rand(0,255));

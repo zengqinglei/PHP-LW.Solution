@@ -60,7 +60,7 @@
     margin-top: 10px;
     width: 300px;
     border: solid 3px #FFBBBC;
-    overflow: hidden;
+    background:transparent url(images/bg-spree-2.png) repeat;
 }
 .spree-hdjs .pack-1{
 	position:absolute;
@@ -76,6 +76,16 @@
 	height:15px;
     background:transparent url(images/icon-1.png) no-repeat;
     display:inline-block;
+}
+
+.spree-hdjs .title-1{
+	margin-top:10px;
+	text-align:center;
+}
+
+.spree-hdjs .title-1 *{
+	display:inline-block;
+	vertical-align: middle;
 }
 
 .home-index-container {
