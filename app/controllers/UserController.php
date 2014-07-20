@@ -29,9 +29,9 @@ class UserController extends BaseController {
 			
 			if( empty($user_exist) ){
 				//执行插入
-				$where = "insert into `users` (`nickname`, `usermail`, `password`,`state`) value (?,?,?,?) ";
+				$where = "insert into `users` (`nickname`, `usermail`, `password`,`state`,`addtime`) value (?,?,?,?,?) ";
 				$nickname = substr($username,0,strpos($username,'@')) . mt_rand(1,9999);
-				$data = array($nickname,$username,$pwd,'1');
+				$data = array($nickname,$username,$pwd,'1',date('Y-m-d H:i:s',time()) );
 				
 				$add_query = DB::insert($where, $data);
 				

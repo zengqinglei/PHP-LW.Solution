@@ -4,10 +4,11 @@
 <div class="center-block spree-lhb">
 	<h4 style="text-align:center;">萝莉盒两岁了，快来领红包！</h4>
 	<p style="margin-top:20px;text-align:center;color:#fe0000;">目前萝莉盒以送出<span class="text-muted">￥1000</span>元红包</p>
-	<h4 style="margin-top:20px;text-align:center;">您可以领取<strong style="color:#fe0000;"> 10 </strong> 个红包</h4>
+	<h4 style="margin-top:20px;text-align:center;">您可以领取<strong style="color:#fe0000;" id="showsurplus"> 10 </strong> 个红包</h4>
 	<p style="width:250px;margin:20px auto;">
 		<button type="submit" class="btn btn-danger btn-block btn-lg" id="btn_lhb">领 红 包</button>
 	</p>
+	<div style="margin-top:2px; text-align:left; color:red; " id="DIV_showmessage" ><span></span></div>
 	<p style="text-align:center;"><a href="#">活动介绍</a>        <span>｜</span>         <a href="#">关于红包</a></p>
 	<div class="xct-1"></div>
 	<div class="vip-info">
@@ -25,7 +26,10 @@
 	<script>
 	    $(function () {
 	        $('button#btn_lhb').click(function () {
-	            $.post('spree/p_lhb');
+	            $.post('/index.php/spree/p_lhb',{'action':'spree'},function(data){
+	            	$('div#DIV_showmessage span').html(data.msg);
+	            	$('#showsurplus').html(10 - parseInt(data.num) );
+		            },'json');
 	        });
 	    });
 	</script>
