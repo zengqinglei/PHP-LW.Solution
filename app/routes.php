@@ -26,7 +26,9 @@ Route::group(array(), function()
 	Route::get('user/login/{user}', 'UserController@getLogin');
 	Route::post('user/login',  array('before' => 'csrf','uses' => 'UserController@postLogin'));
     
-    Route::get('promotions/p_xrzxlp', 'PromotionsController@getP_XRZXLP');
+    Route::get('spree/p_xrzxlp', 'SpreeController@getP_XRZXLP');
+    Route::get('spree/p_lhb', 'SpreeController@getP_LHB');
+    Route::get('spree/p_hdjs', 'SpreeController@getP_HDJS');
 });
 
 Route::group(array('before' => 'auth'), function()
