@@ -27,11 +27,55 @@
         margin-left: 5px;
     }
 
-.promotions-xrzxlp {
+.spree-xrzxlp {
     margin-top: 10px;
     width: 300px;
     border: solid 3px #DD1472;
     overflow: hidden;
+}
+
+.spree-lhb {
+	padding-top:30px;
+    width: 320px;
+    background:transparent url(images/bg-spree-2.png) repeat;
+}
+
+.spree-lhb .xct-1{
+	margin-top:20px;
+	height:184px;
+    background:transparent url(/images/spree-xct-1.png) no-repeat;
+}
+.spree-lhb .vip-info{
+	font-size:16px;
+	color:#fff;
+	height:40px;
+	background-color:#5D4D4E;
+}
+.spree-lhb .vip-info a{
+	color:#fff;
+}
+
+.spree-hdjs {
+	position:relative;
+    margin-top: 10px;
+    width: 300px;
+    border: solid 3px #FFBBBC;
+    overflow: hidden;
+}
+.spree-hdjs .pack-1{
+	position:absolute;
+	top:0;
+	left:0;
+	width:88px;
+	height:88px;
+    background:transparent url(/images/pack-1.png) no-repeat;
+}
+
+.spree-hdjs .icon-1{
+	width:16px;
+	height:15px;
+    background:transparent url(images/icon-1.png) no-repeat;
+    display:inline-block;
 }
 
 .home-index-container {

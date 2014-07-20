@@ -14,7 +14,7 @@ class UserController extends BaseController {
 	}
 	
 	// 客户登录
-	public function getLogin(User $user,$results=null)
+	public function getLogin(User $user=null,$results=null)
 	{
 		return View::make('user.login',array('model'=>$user))->withErrors($results);
 	}

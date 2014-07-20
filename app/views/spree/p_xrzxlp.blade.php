@@ -1,7 +1,7 @@
 @extends('shared.layout')
 
 @section('content')
-<div class="center-block promotions-xrzxlp">
+<div class="center-block spree-xrzxlp">
     <div style="padding-top:4px;padding-right:5px;height:30px;">
         <button class="close pull-right" type="button" onclick="goHistory(-1);"><span class="text-red" aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
