@@ -11,40 +11,27 @@ class UserController extends BaseController {
 		return View::make('user.register');
 	}
 	public function postRegister(){	
-		$post_param = Input::all();
-		
-		if( !empty($post_param) ){
-			$username = $post_param['usermail'];
-			$pwd = $post_param['password'];
-			
-			//$pattern = '/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/';
-			if( empty($pwd) || strlen($pwd)<6 || strlen($pwd) > 16 ){
-				return Redirect::to('user/register')->with('pwd_format', '密码格式错误！');
-			}else {
-				$pwd = md5($pwd);
-			}
-			
-			//判断用户是否存在
-			$user_exist = DB::select('select * from users where usermail = ?', array($username));
-			
-			if( empty($user_exist) ){
-				//执行插入
-				$where = "insert into `users` (`nickname`, `usermail`, `password`,`state`,`addtime`) value (?,?,?,?,?) ";
-				$nickname = substr($username,0,strpos($username,'@')) . mt_rand(1,9999);
-				$data = array($nickname,$username,$pwd,'1',date('Y-m-d H:i:s',time()) );
-				
-				$add_query = DB::insert($where, $data);
-				
-				if($add_query){
-					return Redirect::to('user/login');
-				}else{
-					return Redirect::to('user/register')->with('message', '服务器异常，注册失败！');
-				}
-
-			}else{
-				return Redirect::to('user/register')->with('message', '用户以存在！');
-			}
+		$data = Input::all();
+		$validation = Validator::make($data, array(
+				'usermail' => 'required|email',
+				'password' => 'required|alpha_num|min:6|max:16'
+		));
+		if ($validation->fails()) {
+			return Redirect::back()->withErrors($validation)->withInput();
 		}
+		
+		$user = DB::select('select * from users where usermail = ?', array($data['usermail']));
+		if( !empty($user) ){
+			return View::make('user.register')->with('submit_result', '邮箱已存在！');
+		}
+		//执行插入
+		$where = "insert into `users` (`nickname`, `usermail`, `password`,`state`,`addtime`) value (?,?,?,?,?) ";
+		$nickname = substr($data['usermail'],0,strpos($data['usermail'],'@')) . mt_rand(1,9999);
+		$add_query = DB::insert($where, array($nickname,$data['usermail'],md5($data['password']),'1',date('Y-m-d H:i:s',time()) ));
+		if(!$add_query){
+			return View::make('user.register')->with('submit_result', '服务器异常，注册失败！');
+		}
+		return Redirect::to('user/login');
 	}
 	
 	// 客户登录
@@ -54,25 +41,25 @@ class UserController extends BaseController {
 	}
 	public function postLogin()
 	{
-		return '1';
-		$rules = array(
-				'usermail' => 'alpha_num'
-		);
-		if ($validator->passes()) {
-			// Normally we would do something with the data.
-			return Redirect::to('user/register');
+		$data=Input::all();
+		$validation = Validator::make($data, array(
+			'usermail' => 'required|email',
+			'password' => 'required|alpha_num|min:6|max:16'
+		));
+		if ($validation->fails()) {
+			return Redirect::back()->withErrors($validation)->withInput();
 		}
-		return Redirect::to('/')->withErrors($validator);
-		if (Auth::attempt(array('usermail' => $usermail, 'password' => $password)))
+		if(!Auth::attempt(array('usermail'=>$data['usermail'],'password'=>$data['password'])))
 		{
-			return Redirect::to('index.php/home/index');
+			return View::make('user.login')->with('submit_result', '登录失败！');
 		}
+		return Redirect::to('/');	
 	}	
 	
 	// 客户登出
 	public function getLogout(){
 		Auth::logout();
 		
-		return Redirect::to('index.php/user/login');
+		return Redirect::to('user/login');
 	}
 }

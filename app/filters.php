@@ -35,8 +35,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	/*
-	if (Auth::guest())
+	if (!Auth::check())
 	{
 		if (Request::ajax())
 		{
@@ -44,10 +43,9 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::to('/index.php/user/login');
+			return Redirect::to('/user/login');
 		}
 	}
-	*/
 });
 
 

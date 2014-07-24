@@ -65,4 +65,34 @@ class SpreeController extends BaseController {
 	public function getP_HDJS(){
 		return View::make('spree.p_hdjs');
 	}
+	
+	// 大礼包--关于红包
+	public function getP_GYHB(){
+		return View::make('spree.p_gyhb');
+	}
+	
+	// 大礼包--红包记录
+	public function getP_HBJL(){
+		return View::make('spree.p_hbjl');
+	}
+	
+	// 大礼包--如何领红包
+	public function getP_RHLHB(){
+		return View::make('spree.p_rhlhb');
+	}
+	
+	// 大礼包--如何扫描二维码
+	public function getP_RHSM2WM(){
+		return View::make('spree.p_rhsm2wm');
+	}
+
+	// 大礼包--邀请好友领红包
+	public function getP_YQHYLHB(){
+		return View::make('spree.p_yqhylhb');
+	}
+
+	// 大礼包--邀请好友领红包2
+	public function getP_YQHYLHB2(){
+		return View::make('spree.p_yqhylhb2');
+	}
 }

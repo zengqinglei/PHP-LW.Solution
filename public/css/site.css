@@ -27,16 +27,84 @@
         margin-left: 5px;
     }
 
-.promotions-xrzxlp {
+.spree-xrzxlp {
     margin-top: 10px;
     width: 300px;
     border: solid 3px #DD1472;
     overflow: hidden;
 }
 
-.home-index-container {
-    position: relative;
+.spree-lhb {
+    padding-top:30px;
     width: 320px;
+    background:transparent url(Images/bg-spree-2.png) repeat;
+}
+.spree-lhb .xct-1{
+    height:184px;
+    background:transparent url(/Images/spree-xct-1.png)no-repeat;
+}
+.vip-info{
+    color:#fff;
+    height:40px;
+    background-color:#5D4D4E;
+}
+.vip-info a{
+    color:#fff;
+    cursor:pointer;
+}
+.vip-info a:hover{
+    text-decoration: none;
+}
+
+.spree-hdjs{
+    position:relative;
+    margin-top: 10px;
+    width: 300px;
+    border: solid 3px #FFBCBD;
+}
+
+.spree-hdjs  .title-1{
+    text-align:center;
+}
+
+.spree-hdjs  .icon-1{
+    width:16px;
+    height:15px;
+    background:transparent url(Images/icon-1.png) no-repeat;
+    display:inline-block;
+}
+
+.spree-hdjs  .title-1 *{
+    vertical-align:middle;
+}
+
+.spree-hdjs .pack-1,
+.spree-yqhylhb .pack-1
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:88px;
+    height:88px;
+    background:transparent url(/Images/pack-1.png) no-repeat;
+}
+
+.spree-yqhylhb {
+    position:relative;
+    padding-top:30px;
+    width: 320px;
+    background:transparent url(Images/bg-spree-1.png) repeat;
+}
+
+.spree-hbjl {
+    padding-top:30px;
+    width: 320px;
+    background:transparent url(Images/bg-spree-1.png) repeat;
+}
+
+.home-index-container {
+    width: 320px;
+    overflow:hidden;
 }
 
     .home-index-container .move-bar {
@@ -47,29 +115,49 @@
         background-position:center center;
         background-repeat:no-repeat;
         display: inline-block;
+        z-index:999;
     }
     .home-index-container .bar-left-enable{
         left:0;
-        background: transparent url(/Content/Images/bar-left-enable.png) no-repeat center center;
+        background: transparent url(Images/bar-left-enable.png) no-repeat center center;
     }
     .home-index-container .bar-left-disable{
         left:0;
-        background: transparent url(/Content/Images/bar-left-disable.png) no-repeat center center;
+        background: transparent url(Images/bar-left-disable.png) no-repeat center center;
     }
     .home-index-container .bar-right-enable{
-        right:0;
-        background: transparent url(/Content/Images/bar-right-enable.png) no-repeat center center;
+        left:280px;
+        background: transparent url(Images/bar-right-enable.png) no-repeat center center;
     }
     .home-index-container .bar-right-disable{
-        right:0;
-        background: transparent url(/Content/Images/bar-right-disable.png) no-repeat center center;
+        left:280px;
+        background: transparent url(Images/bar-right-disable.png) no-repeat center center;
+    }
+    .home-index-container .shop-container{        
+         position: relative;
     }
      .home-index-container .shop-list{
          margin:0;
          padding:0;
-         height:300px;
+         width:1600px;
+         height:340px;
          overflow:hidden;
      }
+     .home-index-container .shop-list li{
+         width:320px;
+         cursor:pointer;
+     }
+.login-info{
+    height:30px;
+    background-color:#ccc;
+}
+.login-info a{
+    color:#DD1472;
+    cursor:pointer;
+}
+.login-info a:hover{
+    text-decoration: none;
+}
 
 .footer {
     margin-top: 30px;
@@ -80,4 +168,10 @@
 
 .text-red {
     color: #dd1471;
+}
+.icon-3{
+    background:transparent url(Images/icon-3.png) no-repeat center center;
+}
+.icon-4{
+    background:transparent url(Images/icon-4.png) no-repeat center center;
 }

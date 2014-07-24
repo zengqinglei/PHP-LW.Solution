@@ -9,7 +9,7 @@
 	                <strong>注册</strong>
 		        </div>
 		        <div class="pull-right" style="padding-top:6px;">
-		        	<a class="small" href="/index.php/promotions/p_xrzxlp">注册即送新人专享礼</a>
+		        	<a class="small" href="spree/p_xrzxlp">注册即送新人专享礼</a>
 		        </div>
 		    </div>
 		    <div class="form-group">
@@ -20,7 +20,7 @@
 		    		'autofocus'=>'true'
 		    		)); 
 	    		}}
-	    		<div style="margin-top:2px; text-align:left; color:red; "><span><?php echo Session::get('message'); ?></span></div>
+	    		<div class="text-warning">{{ $errors->first('usermail'); }}</div>
 		    </div>
 		    <div class="form-group">
 		    	{{ Form::password('password',$attributes=array(
@@ -29,7 +29,7 @@
 		    		'required'=>'true'
 		    		)); 
 	    		}}
-	    		<div style="margin-top:2px; text-align:left; color:red; "><span><?php echo Session::get('pwd_format'); ?></span></div>
+	    		<div class="text-warning">{{ $errors->first('password'); }}</div>
 		    </div>
 		    <div class="form-group">
 		    	{{ Form::text('validcode','',$attributes=array(
@@ -40,6 +40,7 @@
 	    		}}
 	    		<img class="img-rounded pull-left img-validcode" alt="验证码">
 		        <a class="btn btn-default btn-refresh-validcode" href="#">刷新</a>
+		        <div class="text-warning">{{ $errors->first('validcode'); }}</div>
 		    </div>
 		    <div class="form-group">
 		    	{{ Form::button('注 册',$attributes=array(
@@ -47,6 +48,7 @@
 		    		'type'=>'submit'
 		    		)); 
 	    		}}
+	    		<div class="text-warning">{{ $errors->first('submit_result'); }}</div>
 		    </div>
 		{{ Form::close() }}
 	<div class="center-block footer"></div>
