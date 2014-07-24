@@ -4,9 +4,9 @@
 <div class="center-block home-index-container">
     <div class="login-info">
         <div style="float:left;width:200px;padding-left:20px;height:30px;line-height:30px;">
-            <span class="glyphicon glyphicon-user"></span> <span>欢迎您：</span><span><?php echo @Auth::user(); ?></span>
+            <span class="glyphicon glyphicon-user"></span> <span>欢迎您：</span><span>{{ Auth::user()->nickname }}</span>
         </div>
-        <a style="float:right;width:120px;line-height:30px;text-align:center;display:inline-block;">
+        <a href="{{URL::to('spree/p_lhb');}}" style="float:right;width:120px;line-height:30px;text-align:center;display:inline-block;">
             <span>领 红 包</span> <span class="glyphicon glyphicon-gift"></span>
 		</a>
     </div>

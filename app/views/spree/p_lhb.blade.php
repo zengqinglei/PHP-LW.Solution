@@ -9,7 +9,7 @@
 		<button type="submit" class="btn btn-danger btn-block btn-lg" id="btn_lhb">领 红 包</button>
 	</p>
 	<div style="margin-top:2px; text-align:left; color:red; " id="DIV_showmessage" ><span></span></div>
-	<p style="text-align:center;"><a href="#">活动介绍</a>        <span>｜</span>         <a href="#">关于红包</a></p>
+	<p style="text-align:center;"><a href="{{URL::to('spree/p_hdjs');}}">活动介绍</a>        <span>｜</span>         <a href="{{URL::to('spree/p_gyhb');}}">关于红包</a></p>
 	<div class="xct-1"></div>
 	<div class="vip-info">
 		<div style="float:left;width:200px;padding-left:20px;heigth:40px;line-height:40px;">
@@ -26,10 +26,12 @@
 	<script>
 	    $(function () {
 	        $('button#btn_lhb').click(function () {
-	            $.post('/index.php/spree/p_lhb',{'action':'spree'},function(data){
+	            $.post('/spree/p_lhb',{'action':'spree'},function(data){
 	            	$('div#DIV_showmessage span').html(data.msg);
 	            	$('#showsurplus').html(10 - parseInt(data.num) );
-		            },'json');
+	            },'json').fail(function(a,b,c){
+	alert(1);
+		            });
 	        });
 	    });
 	</script>

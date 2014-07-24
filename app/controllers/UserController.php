@@ -53,7 +53,7 @@ class UserController extends BaseController {
 		{
 			return View::make('user.login')->with('submit_result', '登录失败！');
 		}
-		return Redirect::to('/');	
+		return Redirect::to('/');
 	}	
 	
 	// 客户登出

@@ -15,11 +15,11 @@
             <img src="/Images/icon-ewm.png" alt="扫描二维码" style="width:134px;height:115px;" />
         </p>
         <p class="small" style="margin-top:10px;text-align:center;">
-            <a href="#">领取红包？</a>
+            <a href="{{URL::to('spree/p_rhlhb');}}">领取红包？</a>
             <span>｜</span>
-            <a href="#">扫描二维码？</a>
+            <a href="{{URL::to('spree/p_rhsm2wm');}}">扫描二维码？</a>
             <span>｜</span>
-            <a href="#">关于红包</a>            
+            <a href="{{URL::to('spree/p_gyhb');}}">关于红包</a>          
         </p>
         <p class="small" style="padding-bottom:10px;text-align:right;">
             LOLITABOX.COM

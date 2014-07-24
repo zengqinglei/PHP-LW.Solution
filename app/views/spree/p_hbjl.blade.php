@@ -30,7 +30,7 @@
             </div>
         </div>
         <p class="small" style="margin-top:10px;text-align:center;">
-            <a href="#">关于红包</a>            
+            <a href="{{URL::to('spree/p_gyhb');}}">关于红包</a>            
         </p>
         <p class="small" style="padding-bottom:10px;text-align:right;">
             LOLITABOX.COM
