@@ -19,6 +19,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * 根据数据库设计更改主键标识
 	 */
 	protected $primaryKey = 'userid';
+	
+	/*
+	 * 去除默认维护的连个字段
+	 */
+	public $timestamps = false;
 
 	/**
 	 * The attributes excluded from the model's JSON form.

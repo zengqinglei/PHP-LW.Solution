@@ -14,7 +14,7 @@
 	        </div>
 	    </div>
 	    <div class="form-group">
-	    	{{ Form::email('usermail',  Input::old('usermail'),$attributes=array(
+	    	{{ Form::email('usermail',Input::old('usermail'),$attributes=array(
 	    		'class'=>'form-control',
 	    		'placeholder'=>'请输入您的邮箱',
 	    		'required'=>'true',

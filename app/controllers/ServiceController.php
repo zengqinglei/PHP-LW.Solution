@@ -1,9 +1,8 @@
 <?php
 
 class ServiceController extends BaseController {
-	public function getValidCode()
-	{
-	    //生成验证码图片
+	// 生成验证码
+	public function getValidCode(){
 	    Header("Content-type: image/PNG");
 	    $im = imagecreate(44,18); // 画一张指定宽高的图片
 	    $back = ImageColorAllocate($im, 245,245,245); // 定义背景颜色
@@ -26,5 +25,73 @@ class ServiceController extends BaseController {
 	    }
 	    return ImagePNG($im);
 	    //ImageDestroy($im);
+	}
+	
+	// 获取地区子级列表
+	public function getAreaChilds(){
+		$childs=Area::whereRaw('pid = ? and status = 1',array(Input::get('parentid')))->get();
+		
+		return json_encode($childs);
+	}
+	
+	// 获取账户余额
+	public function getBalance(){
+		$money_add = Giftcard::where('userid','=',Auth::user()->userid)->sum('price');
+		$money_reduce = User_order::whereRaw('userid = ? and giftcard>0 and state=1 and ifavalid=1 ',array(Auth::user()->userid))->sum('giftcard');
+		$balance=$money_add-$money_reduce;
+		
+		return $balance;
+	}
+	
+	// 计算快递运费
+	public function postCouriercharges($province,$express,$weight) {		
+		switch ($express) {
+			case "st": //申通快递
+				if(preg_match('/新疆|西藏/', $province))  {
+					$startship=20; //首重计费
+					$goonship=18; //续重
+				}
+				else {
+					$startship=8; //首重计费
+					$goonship=5; //续重
+				}
+				break;
+			case "sf": //顺风快递
+				if(preg_match('/新疆|西藏/', $province))  {
+					$startship=24; //首重计费
+					$goonship=20; //续重
+				}else if(preg_match('/北京|天津|河北/', $province)){
+					$startship=15; //首重计费
+					$goonship=5; //续重
+				}else if(preg_match('/广西|广东|海南|内蒙古/', $province)){
+					$startship=22; //首重计费
+					$goonship=14; //续重
+				}else{
+					$startship=22; //首重计费
+					$goonship=10; //续重
+				}
+				break;
+		}
+		if($weight>1) {
+			$weight_goon=$weight-1;
+			$weight_goon_sum=ceil($weight_goon/1)*$goonship;
+			return $startship+$weight_goon_sum;
+		}
+		else {
+			return $startship;
+		}
+	}
+	
+	// 格式化时间戳，精确到毫秒，x代表毫秒
+	function microtime_format($tag, $time){
+		list($usec, $sec) = explode(".", $time);
+		$date = date($tag,$usec);
+		return str_replace('x', $sec, $date);
+	}
+	
+	// 获取当前时间戳，精确到毫秒
+	function microtime_float(){
+		list($usec, $sec) = explode(" ", microtime());
+		return ((float)$usec + (float)$sec);
 	}
 }

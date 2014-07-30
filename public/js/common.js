@@ -44,7 +44,7 @@ var LW = {
         }
     }
 };
-
+// 日期格式化
 Date.prototype.format = function (format) {
     var o = {
         "M+": this.getMonth() + 1, //month
@@ -68,7 +68,57 @@ Date.prototype.format = function (format) {
 function refreshValidCode(control) {
     $(control).attr('src', LW.Url.getValidCode + "?random=" + new Date());
 }
+
 // 返回 级数
 function goHistory(i) {
     window.history.go(i);
+}
+
+//省市县三级联动
+function areaLinkage(isLoad) {
+    var loadArea = function (domSelect, parentId) {
+        $.get("/service/getareachilds", { parentid: parentId }, function (data) {
+            $(data).each(function () {
+                $(domSelect).append("<option value=\"" + this.area_id + "\">" + this.title + "</option>");
+            });
+        }, "json");
+    }
+    $(".select-province,.select-city").change(function () {
+        var siblings_selects = $(this).find("~select");
+        siblings_selects.find("option:gt(0)").remove();
+        var parentId = $(this).val();
+        if (siblings_selects.length > 0 && $.trim(parentId).length > 0) {
+            var next_select = siblings_selects.eq(0);
+            loadArea(next_select, parentId);
+        }
+    });
+
+    if (isLoad) { loadArea($(".select-province"), ""); }
+}
+
+// 获取账户余额
+function getBalance(target,callback){
+	$(target).text('...');
+	$.get('/service/getbalance',function(balance){
+		$(target).text(balance);
+		if(typeof callback == 'function'){
+			callback(balance);
+		}
+	});
+}
+
+// 计算快递运费
+function postCouriercharges(target,province,express,weight,callback){
+	$(target).text('...');
+	$.post('/service/postcouriercharges',
+	{
+		province:province,
+		express:express,
+		weight:weight
+	},function(couriercharges){
+		$(target).text(couriercharges);
+		if(typeof callback == 'function'){
+			callback(couriercharges);
+		}
+	});
 }

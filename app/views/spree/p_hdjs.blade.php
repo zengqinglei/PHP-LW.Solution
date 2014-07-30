@@ -49,10 +49,10 @@
         </p>
         <div class="clearfix">
             <div class="pull-left" style="width:100px; height:50px;">
-                <button type="submit" class="btn btn-danger btn-block">领 红 包</button>
+                <a href="{{URL::to('spree/p_lhb');}}" class="btn btn-danger btn-block">领 红 包</a>
             </div>
             <div class="pull-right" style="width:140px;">
-                <button type="submit" class="btn btn-danger btn-block">邀请好友领红包</button>
+                <a href="{{URL::to('spree/p_yqhylhb');}}" class="btn btn-danger btn-block">邀请好友领红包</a>
             </div>
         </div>
         <p class="small" style="text-align:right;">

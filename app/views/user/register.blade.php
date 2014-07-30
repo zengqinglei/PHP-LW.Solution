@@ -9,7 +9,7 @@
 	                <strong>注册</strong>
 		        </div>
 		        <div class="pull-right" style="padding-top:6px;">
-		        	<a class="small" href="spree/p_xrzxlp">注册即送新人专享礼</a>
+		        	<a class="small" href="{{URL::to('spree/p_xrzxlp');}}">注册即送新人专享礼</a>
 		        </div>
 		    </div>
 		    <div class="form-group">

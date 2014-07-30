@@ -13,24 +13,19 @@ class UserController extends BaseController {
 	public function postRegister(){	
 		$data = Input::all();
 		$validation = Validator::make($data, array(
-				'usermail' => 'required|email',
-				'password' => 'required|alpha_num|min:6|max:16'
+				'usermail' => 'required|email|unique:users',
+				'password' => 'required|alpha_num|min:6|max:16',
+				'validcode' => 'required|numeric|in:'.Session::get('ValidCode')
 		));
 		if ($validation->fails()) {
 			return Redirect::back()->withErrors($validation)->withInput();
 		}
 		
-		$user = DB::select('select * from users where usermail = ?', array($data['usermail']));
-		if( !empty($user) ){
-			return View::make('user.register')->with('submit_result', '邮箱已存在！');
-		}
-		//执行插入
-		$where = "insert into `users` (`nickname`, `usermail`, `password`,`state`,`addtime`) value (?,?,?,?,?) ";
-		$nickname = substr($data['usermail'],0,strpos($data['usermail'],'@')) . mt_rand(1,9999);
-		$add_query = DB::insert($where, array($nickname,$data['usermail'],md5($data['password']),'1',date('Y-m-d H:i:s',time()) ));
-		if(!$add_query){
-			return View::make('user.register')->with('submit_result', '服务器异常，注册失败！');
-		}
+		$user = new User;		
+		$user->usermail = $data['usermail'];
+		$user->nickname=substr($data['usermail'],0,strpos($data['usermail'],'@')) . mt_rand(1,9999);
+		$user->addtime=date('Y-m-d H:i:s',time());
+		$user->save();
 		return Redirect::to('user/login');
 	}
 	
@@ -43,7 +38,7 @@ class UserController extends BaseController {
 	{
 		$data=Input::all();
 		$validation = Validator::make($data, array(
-			'usermail' => 'required|email',
+			'usermail' => 'required|email|exists:users',
 			'password' => 'required|alpha_num|min:6|max:16'
 		));
 		if ($validation->fails()) {

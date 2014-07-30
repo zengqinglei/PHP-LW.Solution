@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Support\Facades\Auth;
@@ -16,40 +18,31 @@ class SpreeController extends BaseController {
 		return View::make('spree.p_lhb');
 	}
 	public function postP_LHB(){
+		$gifttype=Input::get('gifttype');
+		$lhb_times=User_activity::whereRaw(
+			'userid = ? and activitytype = ? and gifttype = ? ',
+			array(Auth::user()->userid,'萝莉盒2周年庆',$gifttype)
+		)->count();
+		if($lhb_times > 0){
+			return View::make('spree.p_lhb')->with(
+				'submit_result',
+				'您已经领取过红包了，您可以<a href="'.URL::to('spree/p_yqhylhb').'">邀请好友</a>继续领红包！');
+		}
+		
 		//设置红包礼金
 		$money_array = array(1,5,10,20,50);
 		$k = array_rand($money_array,1);
 		$rand_money = $money_array[$k];
 		
-		$returndata = array();
-		$returndata['success'] = '0';
-		$returndata['msg'] = '';
+		$lhb=new User_activity;
+		$lhb->userid=Auth::user()->userid;
+		$lhb->activitytype='萝莉盒2周年庆';
+		$lhb->gifttype=$gifttype;
+		$lhb->giftinfo=$rand_money;
+		$lhb->addtime=date('Y-m-d H:i:s',time());
+		$lhb->save();
 		
-		$gifttype = Input::get('action');
-		
-		//获得用户的领取次数
-		$s_query = DB::select("select count(*) as num from `user_activity` where `userid` = ? and `activitytype` = ? and `gifttype` = ? ", 
-		array(Auth::user()->userid,'萝莉盒2周年庆',$gifttype));
-		$n = $s_query[0]->num;
-
-		if( $n >= 1 ){
-			$returndata['msg'] = '您已经参与 ' . $n .'次 活动,重新获得领取资格后才能继续参与！';
-			$returndata['num'] = $n;
-		}else{
-			$where = "insert into `user_activity` (`userid`, `activitytype`, `gifttype`,`giftinfo`,`addtime`) value (?,?,?,?,?) ";
-			$data = array(Auth::user()->userid,'萝莉盒2周年庆',$gifttype,$rand_money,date('Y-m-d H:i:s',time()) );
-			
-			$results = DB::insert($where, $data);
-			if( $results ){
-				$returndata['success'] = '1';
-				$returndata['msg'] = '恭喜您，成功领取' . $rand_money . '元';
-				$returndata['num'] = 1;
-			}else{
-				$returndata['msg'] = '服务器异常！';
-				$returndata['num'] = 0;
-			}
-		}
-		return json_encode($returndata);
+		return Redirect::to('spree/p_yqhylhb?id='.$lhb->id);
 	}
 	
 	
@@ -65,7 +58,12 @@ class SpreeController extends BaseController {
 	
 	// 大礼包--红包记录
 	public function getP_HBJL(){
-		return View::make('spree.p_hbjl');
+		$hbjl=User_activity::whereRaw(
+			'userid = ? and gifttype = ?',
+			array(Auth::user()->userid,'spree')
+		)->orderBy('addtime','desc')->get();
+		
+		return View::make('spree.p_hbjl')->with('hbjl',$hbjl);
 	}
 	
 	// 大礼包--如何领红包
@@ -80,7 +78,9 @@ class SpreeController extends BaseController {
 
 	// 大礼包--邀请好友领红包
 	public function getP_YQHYLHB(){
-		return View::make('spree.p_yqhylhb');
+		$lhb=User_activity::find(Input::get('id'));
+		
+		return View::make('spree.p_yqhylhb')->with('lhb',$lhb);
 	}
 
 	// 大礼包--邀请好友领红包2

@@ -13,19 +13,19 @@
     margin: 0 auto;
 }
 
-    .form-register .txt-validcode {
-        width: 120px;
-    }
+.form-register .txt-validcode {
+    width: 120px;
+}
 
-    .form-register .img-validcode {
-        margin-left: 5px;
-        width: 60px;
-        height: 34px;
-    }
+.form-register .img-validcode {
+    margin-left: 5px;
+    width: 60px;
+    height: 34px;
+}
 
-    .form-register .btn-refresh-validcode {
-        margin-left: 5px;
-    }
+.form-register .btn-refresh-validcode {
+    margin-left: 5px;
+}
 
 .spree-xrzxlp {
     margin-top: 10px;
@@ -42,6 +42,12 @@
 .spree-lhb .xct-1{
     height:184px;
     background:transparent url(/Images/spree-xct-1.png)no-repeat;
+}
+.spree-lhb .form-lhb
+{
+	margin:auto;
+	padding:20px 0;
+	width:250px;
 }
 .vip-info{
     color:#fff;
@@ -63,15 +69,25 @@
     border: solid 3px #FFBCBD;
 }
 
-.spree-hdjs  .title-1{
-    text-align:center;
-}
-
-.spree-hdjs  .icon-1{
+.spree-hdjs  .icon-1,
+.product-details .icon-1,
+.order-confirm .icon-1,
+.order-submit .icon-1,
+.order-list .icon-1,
+.shipping-add .icon-1{
     width:16px;
     height:15px;
     background:transparent url(Images/icon-1.png) no-repeat;
     display:inline-block;
+}
+
+.spree-hdjs  .title-1 *,
+.product-details .title-1 *,
+.order-confirm .title-1 *,
+.order-submit .title-1 *,
+.order-list .title-1 *,
+.shipping-add .title-1 *{
+    vertical-align:middle;
 }
 
 .spree-hdjs  .title-1 *{
@@ -107,46 +123,131 @@
     overflow:hidden;
 }
 
-    .home-index-container .move-bar {
-        position: absolute;
-        width: 40px;
-        height: 260px;
-        background-color:transparent;
-        background-position:center center;
-        background-repeat:no-repeat;
-        display: inline-block;
-        z-index:999;
-    }
-    .home-index-container .bar-left-enable{
-        left:0;
-        background: transparent url(Images/bar-left-enable.png) no-repeat center center;
-    }
-    .home-index-container .bar-left-disable{
-        left:0;
-        background: transparent url(Images/bar-left-disable.png) no-repeat center center;
-    }
-    .home-index-container .bar-right-enable{
-        left:280px;
-        background: transparent url(Images/bar-right-enable.png) no-repeat center center;
-    }
-    .home-index-container .bar-right-disable{
-        left:280px;
-        background: transparent url(Images/bar-right-disable.png) no-repeat center center;
-    }
-    .home-index-container .shop-container{        
-         position: relative;
-    }
-     .home-index-container .shop-list{
-         margin:0;
-         padding:0;
-         width:1600px;
-         height:340px;
-         overflow:hidden;
-     }
-     .home-index-container .shop-list li{
-         width:320px;
-         cursor:pointer;
-     }
+.home-index-container .move-bar {
+    position: absolute;
+    width: 40px;
+    height: 260px;
+    background-color:transparent;
+    background-position:center center;
+    background-repeat:no-repeat;
+    display: inline-block;
+    z-index:999;
+}
+.home-index-container .bar-left-enable{
+    left:0;
+    background: transparent url(Images/bar-left-enable.png) no-repeat center center;
+}
+.home-index-container .bar-left-disable{
+    left:0;
+    background: transparent url(Images/bar-left-disable.png) no-repeat center center;
+}
+.home-index-container .bar-right-enable{
+    left:280px;
+    background: transparent url(Images/bar-right-enable.png) no-repeat center center;
+}
+.home-index-container .bar-right-disable{
+    left:280px;
+    background: transparent url(Images/bar-right-disable.png) no-repeat center center;
+}
+.home-index-container .shop-container{        
+     position: relative;
+}
+.home-index-container .shop-list{
+    margin:0;
+    padding:0;
+    width:1600px;
+    overflow:hidden;
+}
+.home-index-container .shop-list li{
+    width:320px;
+    cursor:pointer;
+}
+
+.home-index-container .shop-list li .btnReduceBuyCount
+{
+	width:40px;height:34px;vertical-align:middle;border-right:solid 1px #ccc;display:inline-block;
+}
+.home-index-container .shop-list li .btnAddBuyCount
+{	
+	width:40px;height:34px;vertical-align:middle;border-left:solid 1px #ccc;display:inline-block;
+}
+.home-index-container .shop-list li .txtBuyCount
+{
+	margin:0;padding:0;border:0;width:40px;height:34px; line-height:34px;text-align:center;font-size:18px;font-weight:800; vertical-align:middle; display:inline-block;
+}
+.home-index-container .form-buy
+{
+	padding:20px 10px;
+}
+.home-index-container .btnBuy
+{
+	float:right;width:120px;line-height:40px;background-color:#DC1570;text-align:center;display:inline-block;
+}
+
+.product-details,
+.order-confirm,
+.order-submit,
+.order-list,
+.shipping-add
+{
+    margin:auto;
+    width:320px;
+}
+.product-details .top,
+.order-confirm .top,
+.order-submit .top,
+.order-list .top,
+.shipping-add .top
+{
+    background-color:#fff7d2;
+}
+.product-details .content-row
+{
+    margin:auto;padding:10px;border-bottom:solid 1px #666;
+}
+.product-details .content-other-row
+{
+    margin:auto;padding:0 10px;border-bottom:solid 1px #666;
+}
+.product-details .content-other-row ul
+{
+    margin:0;
+    padding:0;
+    cursor:pointer;
+}
+.product-details .content-other-row ul li.icon
+{
+    float:left;
+    width:30px;
+    height:30px;
+}
+.product-details .content-other-row ul li.title
+{
+    float:left;
+    padding-left:10px;
+    width:240px;
+    height:30px;
+    line-height:30px;
+}
+.product-details .content-other-row .details
+{
+    padding:10px 0;
+    border-top:solid 1px #eee;
+    display:none;
+}
+
+.order-confirm .form-order-confirm,
+.order-submit .form-order-submit,
+.shipping-add .form-shipping-add
+{
+    margin:auto;
+    width:300px;
+    padding:10px;
+}
+.order-list .item-order,
+.order-list .item-total{
+    margin-top:10px;
+}
 .login-info{
     height:30px;
     background-color:#ccc;
@@ -165,13 +266,34 @@
     height: 119px;
     background: transparent url(/Images/footer.png) no-repeat;
 }
-
+.dl-horizontal
+{
+    margin-bottom:10px;
+}
 .text-red {
     color: #dd1471;
+}
+.text-gray{
+    color:#666;
 }
 .icon-3{
     background:transparent url(Images/icon-3.png) no-repeat center center;
 }
 .icon-4{
     background:transparent url(Images/icon-4.png) no-repeat center center;
+}
+.icon-5{
+    background:transparent url(Images/icon-5.png) no-repeat center center;
+}
+.icon-6{
+    background:transparent url(Images/icon-6.png) no-repeat center center;
+}
+.icon-7{
+    background:transparent url(Images/icon-7.png) no-repeat center center;
+}
+.icon-8{
+    background:transparent url(Images/icon-8.png) no-repeat center center;
+}
+.icon-9{
+    background:transparent url(Images/icon-9.png) no-repeat center center;
 }

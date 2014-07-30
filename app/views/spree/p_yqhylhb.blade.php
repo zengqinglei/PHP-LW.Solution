@@ -10,10 +10,13 @@
     </div>
     <div style="width:250px;margin:auto;">
         <p class="small" style="margin-top:20px;text-align:center;color:#fe0000;">
+            @if(!is_null($lhb))
+            	恭喜您，成功领取{{ $lhb->giftinfo }}元红包,
+            @endif
             1个红包不过瘾，立即邀请好友领取红包，您将获得更多
         </p>
         <p style="text-align:center;">
-            <a href="#" style="width:51px;height:50px;background:transparent url(/Content/Images/icon-2.png) no-repeat center center;display:inline-block;"></a>
+            <a href="#" style="width:51px;height:50px;background:transparent url(/css/Images/icon-2.png) no-repeat center center;display:inline-block;"></a>
         </p>
         <p style="width:250px;margin:20px auto;">
             <button type="submit" class="btn btn-danger btn-block">邀 请 好 友 领 红 包</button>
